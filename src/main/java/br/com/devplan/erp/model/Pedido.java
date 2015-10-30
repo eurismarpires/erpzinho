@@ -1,102 +1,90 @@
 package br.com.devplan.erp.model;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
 @Entity
 @Table(name = "tbl_pedido")
 public class Pedido {
 
-	private Integer id;
-	private String documentno;
-	private Date dateOrdered;
-	private byte[] foto;
-	private Cliente cliente;
-	private Produto produto;
+  private Integer id;
+  private String documentno;
+  private Date dateOrdered;
+  private byte[] foto;
+  private Cliente cliente;
+  private ArrayList<Produto> produto;
 
-	public Pedido() {
+  public Pedido() {
 
-	}
+  }
 
-	public Pedido(String nome, Date dataNascimento, String modelo) {
-		super();
-		this.documentno = documentno;
-		this.dateOrdered = dateOrdered;
-		this.produto = new Produto();
-		this.produto.setModelo(modelo);
-	}
+  public Pedido(String documentno, Date dateOrdered, Cliente cliente, ArrayList<Produto> produto) {
+    this.documentno = documentno;
+    this.dateOrdered = dateOrdered;
+    this.cliente = cliente;
+    this.produto = produto;
+  }
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Integer getId() {
-		return id;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  public Integer getId() {
+    return id;
+  }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+  public void setId(Integer id) {
+    this.id = id;
+  }
 
-	@Column(nullable = false)
-	public String getDocumentno() {
-		return documentno;
-	}
+  @Column(nullable = false)
+  public String getDocumentno() {
+    return documentno;
+  }
 
-	public void setDocumentno(String documentno) {
-		this.documentno = documentno;
-	}
+  public void setDocumentno(String documentno) {
+    this.documentno = documentno;
+  }
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "date_ordered")
-	public Date getDateOrdered() {
-		return dateOrdered;
-	}
+  @Temporal(TemporalType.DATE)
+  @Column(name = "date_ordered")
+  public Date getDateOrdered() {
+    return dateOrdered;
+  }
 
-	public void setDateOrdered(Date dateOrdered) {
-		this.dateOrdered = dateOrdered;
-	}
+  public void setDateOrdered(Date dateOrdered) {
+    this.dateOrdered = dateOrdered;
+  }
 
-	@Transient
-	public String getMoeda() {
-		return "Real";
-	}
+  @Transient
+  public String getMoeda() {
+    return "Real";
+  }
 
-	@Lob
-	public byte[] getFoto() {
-		return foto;
-	}
+  @Lob
+  public byte[] getFoto() {
+    return foto;
+  }
 
-	public void setFoto(byte[] foto) {
-		this.foto = foto;
-	}
+  public void setFoto(byte[] foto) {
+    this.foto = foto;
+  }
 
-	@OneToOne(cascade = CascadeType.ALL)
-	public Produto getProduto() {
-		return produto;
-	}
+  @OneToOne(cascade = CascadeType.ALL)
+  public ArrayList<Produto> getProduto() {
+    return produto;
+  }
 
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
+  public void setProduto(ArrayList<Produto> produto) {
+    this.produto = produto;
+  }
 
-	@OneToOne(cascade = CascadeType.ALL)
-	public Cliente getCliente() {
-		return cliente;
-	}
+  @OneToOne(cascade = CascadeType.ALL)
+  public Cliente getCliente() {
+    return cliente;
+  }
 
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+  public void setCliente(Cliente cliente) {
+    this.cliente = cliente;
+  }
 
 }
