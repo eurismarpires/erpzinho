@@ -1,7 +1,5 @@
 package model;
 
-import java.util.List;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.persistence.Entity;
@@ -20,14 +18,12 @@ import javax.persistence.Table;
 public class Client {
 
 	private Integer id;
-	private String nome;
+	private String name;
 	private String cpfCnpj;
 	private Address address;
-	
-	private Client client;
 
-	public Client(String nome, String cpfCnpj, Address address) {
-		this.nome = nome;
+	public Client(String name, String cpfCnpj, Address address) {
+		this.name = name;
 		this.cpfCnpj = cpfCnpj;
 		this.address = address;
 	}
@@ -46,12 +42,12 @@ public class Client {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCpfCnpj() {

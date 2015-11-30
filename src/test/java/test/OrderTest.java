@@ -21,24 +21,10 @@ public class OrderTest extends TestCase {
 	}
 
 	public void testApp() {
-		Address address = new Address("RUA Java", 2, "SJC");
+		Order orderBuilder = new OrderBuilder()
+				.withOrder("ORDER /1", "Andre", "123.456.789-01", "Feijao", "Camil", "Carioca").building();
 
-		Client client = new Client("Andre Lemos", "XXX.XXX.XXX-XX", address);
-
-		ArrayList<Product> productList = new ArrayList<Product>();
-		Product product = new Product();
-		product.setName("Feijão");
-		product.setMark("Camil");
-		product.setModel("Carioca");
-		productList.add(product);
-
-		Order pedido1 = new Order();
-		pedido1.setDocumentno("PEDIDO/ 1");
-		pedido1.setDateOrdered(new GregorianCalendar(1984, 10, 28).getTime());
-		pedido1.setClient(client);
-		pedido1.setProduto(productList);
-
-		assertNotNull(pedido1);
+		assertNotNull(orderBuilder);
 	}
 
 }
